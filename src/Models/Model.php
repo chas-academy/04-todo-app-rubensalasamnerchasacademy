@@ -68,6 +68,7 @@ abstract class Model
             return $err->getMessage();
         }
     }
+
 }
 
 Model::initialize();
