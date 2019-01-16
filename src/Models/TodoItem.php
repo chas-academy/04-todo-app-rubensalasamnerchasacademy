@@ -35,7 +35,6 @@ class TodoItem extends Model
 
         $result = self::$db->execute();
         
-
         return $result;
     }
 
@@ -51,12 +50,18 @@ class TodoItem extends Model
          return $result;
     }
     
-    // (Optional bonus methods below)
-    // public static function toggleTodos($completed)
-    // {
-    //     // TODO: Implement me!
-    //     // This is to toggle all todos either as completed or not completed
-    // }
+   
+    public static function toggleTodos($completed)
+    {
+       $query = "UPDATE todos
+                SET completed = '$completed'
+                ";
+       self::$db->query($query);
+
+       $result = self::$db->execute();
+
+       return $result;
+    }
 
     // public static function clearCompletedTodos()
     // {
