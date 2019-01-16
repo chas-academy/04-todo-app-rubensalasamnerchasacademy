@@ -25,13 +25,16 @@ class TodoItem extends Model
     {
     // TODO: Implement me!
      // Update a specific todo
+     
         $query = "UPDATE todos
-                  SET title = $title
-                  WHERE id = $todoId";
+                  SET title = '$title',
+                      completed = '$completed'
+                  WHERE id = '$todoId'";
 
         self::$db->query($query);
-        
+
         $result = self::$db->execute();
+        
 
         return $result;
     }
@@ -39,11 +42,9 @@ class TodoItem extends Model
 
      public static function deleteTodo($todoId)
     {
-         // TODO: Implement me!
-         // Delete a specific todo
+        
          $query = "DELETE FROM todos WHERE id = $todoId";
          self::$db->query($query);
-         /* self::$db->bind(':id', $todoId); */
 
          $result = self::$db->execute();
          
