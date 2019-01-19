@@ -87,7 +87,23 @@ class TodoController extends Controller {
 
     public function clear()
     {
-      // (OPTIONAL) TODO: This action should remove all completed todos from the table.
+        $todosClear = TodoItem::findAll();
+
+        foreach ($todosClear as $todo){
+            if ($todo['completed'] === 'true') {
+    
+                $completedArray [] = $todo['id'];
+            }
+        } 
+
+        $ids = implode("','", $completedArray);
+        $result = TodoItem::clearCompletedTodos($ids);
+
+        if ($result) {
+            $this->redirect('/');
+        }
+        
     }
+
 
 }
