@@ -111,5 +111,20 @@ class TodoController extends Controller {
         return $this->view('index', ['todos' => $completed]);
     }   
 
+    public function notcompleted() 
+    {
+        $todosCompleted = TodoItem::findAll();
+        $completed = [];
+        foreach($todosCompleted as $todo) 
+        {
+            if ($todo['completed'] === 'false') {
+                $completed [] = $todo;
+            }
+        }
+
+
+        return $this->view('index', ['todos' => $completed]);
+    }
+
 
 }
