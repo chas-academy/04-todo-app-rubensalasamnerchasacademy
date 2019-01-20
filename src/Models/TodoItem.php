@@ -8,68 +8,99 @@ class TodoItem extends Model
 
     public static function createTodo($title)
     {
-        print_r($title);
-        $query = "INSERT INTO todos (title, created)  
-                  VALUES ('$title', NOW())";
-        
-        self::$db->query($query);
-        
-        $result = self::$db->execute();
-
-        return $result;
-
-        
+        try{
+            print_r($title);
+            $query = "INSERT INTO todos (title, created)  
+                    VALUES ('$title', NOW())";
+            self::$db->query($query);
+            $result = self::$db->execute();
+            if (!empty($result)) {
+                return $result;
+            } else {
+                return [];
+            }
+        } catch (PDOException $err) {
+            return $err->getMessage();
+        }
     }
 
     public static function updateTodo($todoId, $title, $completed = null)
     {
-    // TODO: Implement me!
-     // Update a specific todo
-     
-        $query = "UPDATE todos
-                  SET title = '$title',
-                      completed = '$completed'
-                  WHERE id = '$todoId'";
-
-        self::$db->query($query);
-
-        $result = self::$db->execute();
-        
-        return $result;
+        try{
+            $query = "UPDATE todos SET title = '$title', completed = '$completed' 
+                    WHERE id = '$todoId'";
+            self::$db->query($query);
+            $result = self::$db->execute();
+            if (!empty($result)) {
+                return $result;
+            } else {
+                return [];
+            }
+        } catch (PDOException $err) {
+            return $err->getMessage();
+        }
     }
 
 
-     public static function deleteTodo($todoId)
+    public static function deleteTodo($todoId)
     {
-        
-         $query = "DELETE FROM todos WHERE id = $todoId";
-         self::$db->query($query);
-
-         $result = self::$db->execute();
-         
-         return $result;
+        try{
+            $query = "DELETE FROM todos WHERE id = $todoId";
+            self::$db->query($query);
+            $result = self::$db->execute();
+            if (!empty($result)) {
+                return $result;
+            } else {
+                return [];
+            }
+        } catch (PDOException $err) {
+            return $err->getMessage();
+        }
     }
     
    
     public static function toggleTodos($completed)
     {
-       $query = "UPDATE todos
-                SET completed = '$completed'
-                ";
-       self::$db->query($query);
-
-       $result = self::$db->execute();
-
-       return $result;
+        try {
+            $query = "UPDATE todos SET completed = '$completed'";
+            self::$db->query($query);
+            $result = self::$db->execute();
+            if (!empty($result)) {
+                return $result;
+            } else {
+                return [];
+            }
+        } catch (PDOException $err) {
+            return $err->getMessage();
+        }
     }
 
     public static function clearCompletedTodos($ids)
-     {
-          $query = "DELETE FROM todos WHERE id IN ('".$ids."')";
+    {
+        try {
+            $query = "DELETE FROM todos WHERE id IN ('".$ids."')";
           
-          self::$db->query($query);
-          $result = self::$db->execute();
-          return $result;
-     }
+            self::$db->query($query);
+            $result = self::$db->execute();
+            if (!empty($result)) {
+                return $result;
+            } else {
+                return [];
+            }
+        } catch (PDOException $err) {
+            return $err->getMessage();
+        }
+
+        
+    }
+
+    public static function search($params)
+    {
+        $query = "SELECT * FROM todos WHERE title LIKE '%$params%'";
+
+        self::$db->query($query);
+        $result = self::$db->execute();
+        return $result;
+    }
 
 }

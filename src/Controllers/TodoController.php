@@ -122,16 +122,36 @@ class TodoController extends Controller {
     public function all() 
     {
         $todosAll = TodoItem::findAll();
-       /*  $completed = [];
-        foreach($todosAll as $todo) 
-        {
-            if ($todo['completed'] === 'false') {
-                $completed [] = $todo;
-            }
-        }
- */
 
         return $this->view('index', ['todos' => $todosAll]);
+    }
+
+    public function search() 
+    {
+        
+        /* var_dump($_GET['search']); */
+
+        
+        /* $result = TodoItem::search($_GET['search']);
+
+        if ($result) {
+            
+            var_dump($result);
+
+        } */
+        
+        
+        /* var_dump($_POST); */
+        $body = filter_body();
+        var_dump($body['title']);
+        /* $result = TodoItem::createTodo($body['title']); */
+        
+
+        /* if ($result) {
+            return $this->view('index', ['todos' => $result]);
+            var_dump($result);
+        } */
+    
     }
 
 
