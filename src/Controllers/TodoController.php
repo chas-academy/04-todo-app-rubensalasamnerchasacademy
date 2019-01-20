@@ -48,21 +48,14 @@ class TodoController extends Controller {
         }));
         
         if ($completedCounter > 0) {
-            'checked="true"';
+           $result = TodoItem::toggleTodos('true');
         } else {
-            'checked="false"';
+           $result = TodoItem::toggleTodos('false');
         }
-      
-        $body = filter_body();
         
-        $toggleAll = isset($body['toggle']) ? 'true' : 'false';
-
-        $result = TodoItem::toggleTodos($toggleAll);
-  
         if ($result) {
             $this->redirect('/');
         }
-
     }
 
     public function delete($urlParams)
