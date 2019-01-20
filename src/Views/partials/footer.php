@@ -3,6 +3,7 @@
     <a class="clear-completed" href="/todos/clear-completed" name="clear">Clear completed</a>
     <a class="clear-completed" href="/todos/display-completed" name="displaycompleted">Completed</a>
     <a class="clear-completed" href="/todos/display-notcompleted" name="displaycompleted">Not Completed</a>
+    <a class="clear-completed" href="/todos/display-all" name="displaycompleted">All</a>
 </footer>
 
 </main>
