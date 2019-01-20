@@ -73,17 +73,8 @@ class TodoController extends Controller {
       if ($result) {
         $this->redirect('/');
       }
-      
-     
-      
 
-
-      
-    
     }
-
-    
-    
 
     public function clear()
     {
@@ -104,6 +95,21 @@ class TodoController extends Controller {
         }
         
     }
+
+    public function completed()
+    {
+        $todosCompleted = TodoItem::findAll();
+        $completed = [];
+        foreach($todosCompleted as $todo) 
+        {
+            if ($todo['completed'] === 'true') {
+                $completed [] = $todo;
+            }
+        }
+
+
+        return $this->view('index', ['todos' => $completed]);
+    }   
 
 
 }
