@@ -1,15 +1,9 @@
 <header class="header">
     <h1>todos</h1>
-    <!-- <form class="view" method="GET" action="/todos/search">
-        <input type="text" name="search" placeholder="Search for todos?">
-        <input type="submit" name="submit" placeholder="submit">
-    </form>  -->
-    <form id="view" method="get" action="/todos/search">
+    <!-- <form id="view" method="get" action="/todos/search">
         <input name="search" value="test" placeholder="Search for todos" autofocus>
         <input type="submit" name="submit" placeholder="submit">
-    </form>
-
-   
+    </form> -->
     <form id="create-todo" method="post" action="/todos">
         <input name="title" class="new-todo" placeholder="What needs to be done?" autofocus>
     </form>
