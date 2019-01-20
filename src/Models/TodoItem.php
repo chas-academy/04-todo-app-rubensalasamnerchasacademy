@@ -94,13 +94,13 @@ class TodoItem extends Model
         
     }
 
-    public static function search($params)
+    /* public static function search($params)
     {
         $query = "SELECT * FROM todos WHERE title LIKE '%$params%'";
 
         self::$db->query($query);
         $result = self::$db->execute();
         return $result;
-    }
+    } */
 
 }

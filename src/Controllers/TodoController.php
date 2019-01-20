@@ -33,7 +33,7 @@ class TodoController extends Controller {
         
         
         if ($result) {
-          $this->redirect('/');
+            $this->redirect('/');
         }
         
         
@@ -44,13 +44,13 @@ class TodoController extends Controller {
         $todosToggle = TodoItem::findAll();
         
         $completedCounter = count(array_filter($todosToggle, function($todo) { 
-           return $todo['completed'] === "false";
+            return $todo['completed'] === "false";
         }));
         
         if ($completedCounter > 0) {
-           $result = TodoItem::toggleTodos('true');
+            $result = TodoItem::toggleTodos('true');
         } else {
-           $result = TodoItem::toggleTodos('false');
+            $result = TodoItem::toggleTodos('false');
         }
         
         if ($result) {
@@ -60,12 +60,11 @@ class TodoController extends Controller {
 
     public function delete($urlParams)
     {
-      // TODO: Implement me!
-      $result = TodoItem::deleteTodo($urlParams['id']);
+        $result = TodoItem::deleteTodo($urlParams['id']);
 
-      if ($result) {
-        $this->redirect('/');
-      }
+        if ($result) {
+            $this->redirect('/');
+        }
 
     }
 
@@ -142,8 +141,8 @@ class TodoController extends Controller {
         
         
         /* var_dump($_POST); */
-        $body = filter_body();
-        var_dump($body['title']);
+        /* $body = filter_body();
+        var_dump($body['title']); */
         /* $result = TodoItem::createTodo($body['title']); */
         
 
